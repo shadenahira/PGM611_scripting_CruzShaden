@@ -14,9 +14,15 @@ public class Jugador : MonoBehaviour
     public float radioComprobadorPiso = 0.1f;
     public LayerMask layerPiso;
 
+    // Animator del personaje
+    private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Obtener el Animator del personaje
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -47,6 +53,9 @@ public class Jugador : MonoBehaviour
                 alturaSalto
             );
         }
+
+        // Enviar la velocidad al Animator
+        animator.SetFloat("Velocidad", Mathf.Abs(movimiento));
     }
 
     void FixedUpdate()
